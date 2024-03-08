@@ -91,7 +91,7 @@ static void wakeup_thread2(void)
 
 	/*allocate some shared memory*/
 	addr = mmap(NULL, hpsz, PROT_WRITE | PROT_READ,
-	            MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+	            MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB, -1, 0);
 
 	if (addr == MAP_FAILED) {
 		if (errno == ENOMEM)

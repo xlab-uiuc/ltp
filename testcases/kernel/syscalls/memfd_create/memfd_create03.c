@@ -125,7 +125,7 @@ static void test_max_hugepages(int fd)
 	hps = hps << 10;
 	mem = check_huge_mmapable(fd, free_pages * hps);
 
-	new_fd = sys_memfd_create("new_file", NULL);
+	new_fd = sys_memfd_create("new_file", MFD_HUGETLB);
 	if (new_fd < 0)
 		tst_brk(TFAIL | TERRNO, "memfd_create() failed");
 	tst_res(TINFO, "memfd_create() succeeded");
@@ -170,7 +170,7 @@ static void memfd_huge_controller(unsigned int n)
 
 	tst_res(TINFO, "%s", tc->desc);
 
-	fd = sys_memfd_create("test_file", NULL);
+	fd = sys_memfd_create("test_file", MFD_HUGETLB);
 	if (fd < 0)
 		tst_brk(TFAIL | TERRNO, "memfd_create() failed");
 	tst_res(TINFO, "memfd_create() succeeded");
